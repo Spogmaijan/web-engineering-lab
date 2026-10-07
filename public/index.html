@@ -1,11 +1,11 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Accessible Website</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -16,9 +16,9 @@
     <h1>Welcome to My Website</h1>
 
     <nav aria-label="Main navigation">
-      <a href="#home" aria-current="location">Home</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="#home" class="nav-link" aria-current="page">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#contact" class="nav-link">Contact</a>
     </nav>
   </header>
 
@@ -26,18 +26,23 @@
 
     <section id="home">
       <h2>Home</h2>
-      <p>Welcome to my website. This page is simple and accessible.</p>
+      <p class="text-muted">
+        Welcome to my website. This page is simple and accessible.
+      </p>
     </section>
 
     <section id="about">
       <h2>About</h2>
-      <p>This section contains information about the website.</p>
+      <p class="text-muted">
+        This section contains information about the website.
+      </p>
     </section>
 
     <section id="contact">
       <h2>Contact</h2>
 
       <form>
+
         <label for="name">Name</label>
         <input
           type="text"
@@ -60,25 +65,38 @@
           <legend>Preferred contact method</legend>
 
           <label>
-            <input type="radio" name="contact-method" value="email">
+            <input
+              type="radio"
+              name="contact-method"
+              value="email"
+            >
             Email
           </label>
 
           <label>
-            <input type="radio" name="contact-method" value="phone">
+            <input
+              type="radio"
+              name="contact-method"
+              value="phone"
+            >
             Phone
           </label>
         </fieldset>
 
         <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5"></textarea>
+        <textarea
+          id="message"
+          name="message"
+          rows="5"
+        ></textarea>
 
         <button type="submit">Submit</button>
+
       </form>
+
     </section>
 
   </main>
 
 </body>
 </html>
-```
