@@ -1,102 +1,196 @@
-<!DOCTYPE html>
+```html
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Web Engineering Lab</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Accessible Website</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<body>
+    <header>
+      <h1 id="greeting">Hello, Spogmai jan!</h1>
 
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+      <nav aria-label="Main">
+        <ul>
+          <li>
+            <a href="#schedule" class="nav-link" aria-current="location">
+              Office Hours
+            </a>
+          </li>
+          <li>
+            <a href="#feedback" class="nav-link">Send Feedback</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
-  <header>
-    <h1>Welcome to My Website</h1>
+    <main id="main-content">
+      <section id="schedule" aria-labelledby="schedule-heading">
+        <h2 id="schedule-heading" class="span-all">Office Hours</h2>
 
-    <nav aria-label="Main navigation">
-      <a href="#home" class="nav-link" aria-current="page">Home</a>
-      <a href="#about" class="nav-link">About</a>
-      <a href="#contact" class="nav-link">Contact</a>
-    </nav>
-  </header>
+        <table>
+          <caption>Weekly office hours</caption>
 
-  <main id="main-content">
+          <thead>
+            <tr>
+              <th scope="col">Day</th>
+              <th scope="col">Time</th>
+              <th scope="col">Book</th>
+            </tr>
+          </thead>
 
-    <section id="home">
-      <h2>Home</h2>
-      <p class="text-muted">
-        Welcome to my website. This page is simple and accessible.
-      </p>
-    </section>
+          <tbody>
+            <tr>
+              <th scope="row">Monday</th>
+              <td>
+                <time datetime="09:00">9:00</time>–<time datetime="10:00">10:00</time>
+              </td>
+              <td>
+                <button type="button" data-day="Monday">Book</button>
+              </td>
+            </tr>
 
-    <section id="about">
-      <h2>About</h2>
-      <p class="text-muted">
-        This section contains information about the website.
-      </p>
-    </section>
+            <tr>
+              <th scope="row">Wednesday</th>
+              <td>
+                <time datetime="11:00">11:00</time>–<time datetime="12:30">12:30</time>
+              </td>
+              <td>
+                <button type="button" data-day="Wednesday">Book</button>
+              </td>
+            </tr>
 
-    <section id="contact">
-      <h2>Contact</h2>
+            <tr>
+              <th scope="row">Friday</th>
+              <td>
+                <time datetime="13:00">1:00</time>–<time datetime="14:00">2:00</time>
+              </td>
+              <td>
+                <button type="button" data-day="Friday">Book</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-      <form>
-
-        <label for="name">Name</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          autocomplete="name"
-          required
+        <p
+          id="booking-status"
+          class="span-all"
+          role="status"
+          aria-live="polite"
         >
+          No office hours booked.
+        </p>
 
-        <label for="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          autocomplete="email"
-          required
-        >
+        <figure>
+          <svg
+            role="img"
+            aria-labelledby="pin-title"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <title id="pin-title">Location pin</title>
+            <path
+              d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"
+              fill="#0b3d91"
+            />
+          </svg>
 
-        <fieldset>
-          <legend>Preferred contact method</legend>
+          <figcaption>
+            All office hours are held in Room 214.
+          </figcaption>
+        </figure>
+      </section>
 
-          <label>
+      <svg
+        aria-hidden="true"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        class="divider"
+      >
+        <circle cx="12" cy="12" r="3" fill="#0b3d91" />
+      </svg>
+
+      <section id="feedback" aria-labelledby="feedback-heading">
+        <h2 id="feedback-heading">Send Feedback</h2>
+
+        <form action="#" method="post">
+          <p class="field">
+            <label for="name">Name</label>
             <input
-              type="radio"
-              name="contact-method"
-              value="email"
-            >
-            Email
-          </label>
+              type="text"
+              id="name"
+              name="name"
+              autocomplete="name"
+              required
+            />
+          </p>
 
-          <label>
+          <p class="field">
+            <label for="email">Email</label>
             <input
-              type="radio"
-              name="contact-method"
-              value="phone"
-            >
-            Phone
-          </label>
-        </fieldset>
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="email"
+              required
+              aria-describedby="email-hint"
+            />
+            <span id="email-hint">
+              We will only use this to reply to you.
+            </span>
+          </p>
 
-        <label for="message">Message</label>
-        <textarea
-          id="message"
-          name="message"
-          rows="5"
-        ></textarea>
+          <fieldset class="span-all">
+            <legend>Topic</legend>
 
-        <button type="submit">Submit</button>
+            <div class="radio">
+              <input
+                type="radio"
+                id="topic-lab"
+                name="topic"
+                value="lab-content"
+                checked
+              />
+              <label for="topic-lab">Lab content</label>
+            </div>
 
-      </form>
+            <div class="radio">
+              <input
+                type="radio"
+                id="topic-other"
+                name="topic"
+                value="other"
+              />
+              <label for="topic-other">Something else</label>
+            </div>
+          </fieldset>
 
-    </section>
+          <div class="field span-all">
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              required
+            ></textarea>
+          </div>
 
-  </main>
+          <button type="submit">Send</button>
+        </form>
+      </section>
+    </main>
 
-</body>
+    <footer>
+      <address>Contact your instructor for help.</address>
+    </footer>
+
+    <script type="module" src="main.js"></script>
+  </body>
 </html>
+```

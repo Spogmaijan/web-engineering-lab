@@ -1,21 +1,40 @@
-const express = require("express");
 
-const app = express();
+document.addEventListener("click", function (event) {
+  const button = event.target.closest("button[data-day]");
 
-app.use(express.static("public"));
+  if (!button) {
+    return;
+  }
 
-app.get("/", (req, res) => {
-  res.send("Welcome to My Web Engineering Project!");
+  const row = button.closest("tr");
+  const day = button.dataset.day;
+
+  row.classList.toggle("selected");
+
+  const isSelected = row.classList.contains("selected");
+
+  button.textContent = isSelected ? "Cancel" : "Book";
+
+  const bookedRows = document.querySelectorAll(
+    "#schedule tbody tr.selected"
+  );
+
+  const status = document.querySelector("#booking-status");
+
+  status.textContent =
+    `${day} ${isSelected ? "booked" : "unbooked"}. ` +
+    `Total booked rows: ${bookedRows.length}.`;
 });
 
-app.get("/about", (req, res) => {
-  res.send("This is the About page.");
+// Task 10: Event loop demonstration
+console.log("1. Start");
+
+setTimeout(() => {
+  console.log("2. Timeout");
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log("3. Promise");
 });
 
-app.get("/contact", (req, res) => {
-  res.send("This is the Contact page.");
-});
-
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
-});
+console.log("4. End");
