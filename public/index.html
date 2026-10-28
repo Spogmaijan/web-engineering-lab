@@ -1,4 +1,3 @@
-```html
 <!doctype html>
 <html lang="en">
   <head>
@@ -119,7 +118,7 @@
       <section id="feedback" aria-labelledby="feedback-heading">
         <h2 id="feedback-heading">Send Feedback</h2>
 
-        <form action="#" method="post">
+        <form id="feedback-form" novalidate>
           <p class="field">
             <label for="name">Name</label>
             <input
@@ -129,6 +128,7 @@
               autocomplete="name"
               required
             />
+            <span class="error" id="name-error"></span>
           </p>
 
           <p class="field">
@@ -144,6 +144,7 @@
             <span id="email-hint">
               We will only use this to reply to you.
             </span>
+            <span class="error" id="email-error"></span>
           </p>
 
           <fieldset class="span-all">
@@ -179,9 +180,12 @@
               rows="5"
               required
             ></textarea>
+            <span class="error" id="message-error"></span>
           </div>
 
           <button type="submit">Send</button>
+
+          <p id="feedback-status" role="status" aria-live="polite"></p>
         </form>
       </section>
     </main>
@@ -190,7 +194,7 @@
       <address>Contact your instructor for help.</address>
     </footer>
 
-    <script type="module" src="main.js"></script>
+    <script type="module" src="../dist/main.js"></script>
+    <script type="module" src="../dist/feedback.js"></script>
   </body>
 </html>
-```
